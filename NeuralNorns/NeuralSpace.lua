@@ -1,6 +1,6 @@
 -- NeuralNorns - NeuralSpace
 -- v1.0.0 @beat
--- llllllll.co/t/22222
+-- llllllll.co/t/neuralnorns/63473
 --
 -- generate beats based on ML
 --
