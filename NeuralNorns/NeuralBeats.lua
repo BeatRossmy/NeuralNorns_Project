@@ -1,8 +1,17 @@
--- scriptname: short script description
--- v1.0.0 @author
+-- NeuralNorns - NeuralBeats
+-- v1.0.0 @beat
 -- llllllll.co/t/22222
-
-
+--
+-- generate beats based on ML
+--
+-- top: pattern => triggers drums
+-- mid: vector => samples pattern
+-- bottom: snapshots => store vectors
+--
+-- turn encoder: sample random latent vector
+-- short press snapshot: make snapshot
+-- hold snapshot: recall snapshot while held
+-- hold snapshots: interpolate snapshots
 
 engine.name = 'Ack'
 local Ack = require 'ack/lib/ack'
@@ -11,8 +20,6 @@ tabutil = require("tabutil")
 JSON = include("lib/JSON")
 
 g = grid.connect()
-
-
 
 Sequential = include("lib/Sequential")
 nn = Sequential.new()
@@ -38,10 +45,6 @@ load_model = function (m)
   end
 end
 
-
-
---hold_latent = nil
-
 tick = 0
 
 snapshots = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
@@ -50,15 +53,6 @@ selected = {
   latent_dim = nil,
   snapshots = {}
 }
-
-init_pattern = function (p, m)
-  --p = {}
-  --for r=1, m.height do
-  --  local row = {}
-  --  for c=1, m.width do table.insert(row,0) end
-  --  table.insert(p,row)
-  --end
-end
 
 count_hold = function ()
   local n = 0
@@ -160,7 +154,7 @@ ui_update = function ()
 end
 
 function init()
-  model = JSON.get_table(_path.data.."NeuralNorns/models/model_5.json") 
+  model = JSON.get_table(_path.code.."NeuralNorns/default_models/beat_model.json") 
   load_model(model)
   
   params:add_file("model", "model")
@@ -214,8 +208,6 @@ function redraw()
     screen.level(math.floor(l))
     screen.stroke()
   end
-  
-  -- draw current latent vector
   
   screen.update()
   

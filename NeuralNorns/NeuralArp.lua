@@ -1,6 +1,18 @@
--- scriptname: short script description
--- v1.0.0 @author
+-- NeuralNorns - NeuralArp
+-- v1.0.0 @beat
 -- llllllll.co/t/22222
+--
+-- generate arpeggios based on ML
+--
+-- left: keys => play notes
+-- bottom: seq => sequence notes
+-- top: pattern => arpeggiates notes
+-- mid: vector => samples pattern
+--
+-- hold keys and press step: add/remove notes
+-- hold step and press keys: add/remove notes
+-- hold vector: enc change lfo depth/speed
+
 
 engine.name = 'PolyPerc'
 hs = include('lib/halfsecond')
@@ -195,13 +207,11 @@ ui_update = function ()
 end
 
 function init()
-  
-  
   for _,step in ipairs(sequence) do
     step.notes = {}
   end
   
-  model = JSON.get_table(_path.data.."NeuralNorns/models/arp_model.json")
+  model = JSON.get_table(_path.code.."NeuralNorns/default_models/arp_model.json")
   load_model(model)
   
   params:add_file("model", "model")

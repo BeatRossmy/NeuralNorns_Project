@@ -1,6 +1,13 @@
--- scriptname: short script description
--- v1.0.0 @author
+-- NeuralNorns - NeuralSpace
+-- v1.0.0 @beat
 -- llllllll.co/t/22222
+--
+-- generate beats based on ML
+--
+-- top: latent space
+-- 12/1-16/1: pattern recoder
+--
+-- press latent space => sample pattern
 
 local pattern_time = require 'pattern_time'
 
@@ -190,7 +197,7 @@ active_pattern = nil
 
 
 function init()
-  model = JSON.get_table(_path.data.."NeuralNorns/models/model_beats_2d.json") 
+  model = JSON.get_table(_path.code.."NeuralNorns/default_models/space_model.json") 
   load_model(model)
   
   local def_samples = {
